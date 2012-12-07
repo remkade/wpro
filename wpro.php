@@ -290,7 +290,7 @@ class WordpressReadOnly extends WordpressReadOnlyGeneric {
 		add_filter('wp_save_image_file', array($this, 'save_image_file'), 10, 5); // Store image file.
 		add_filter('wp_upload_bits', array($this, 'upload_bits')); // On XMLRPC uploads, files arrives as strings, which we are handling in this filter.
 		add_filter('wp_handle_upload_prefilter', array($this, 'handle_upload_prefilter')); // This is where we check for filename dupes (and change them to avoid overwrites).
-		add_filter('shutdown', array($this, 'shutdown'));
+		add_action('shutdown', array($this, 'shutdown'));
 
 		switch (get_option('wpro-service')) {
 		case 'klandestino':
@@ -695,3 +695,4 @@ class WordpressReadOnly extends WordpressReadOnlyGeneric {
 	}
 
 }
+?>
